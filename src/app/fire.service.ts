@@ -1,17 +1,12 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
-import { Observable } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Producto } from './interfaces/producto.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FireService {
-
-  productoCollection: AngularFirestoreCollection<Producto>;
-  Productos: Observable<Producto[]>;
 
   constructor(private auth: AngularFireAuth,
               private afs: AngularFirestore ) { }
@@ -27,7 +22,7 @@ export class FireService {
     this.afs.collection('productos').add( producto );
   }
   traerProductos(){
-    return this.productoCollection =  this.afs.collection<Producto>('productos');
+    return this.afs.collection<Producto>('productos');
   }
   eliminar(id: string){
     this.afs.collection('productos').doc(id).delete();
