@@ -1,0 +1,12 @@
+<ion-content>
+  <ion-list *ngFor="let item of arrProductos " >
+    <ion-item color="dark" >
+      <ion-label> {{item.nombre}} </ion-label>
+      <ion-button (click)="borrar(item.id)" color="danger" >
+
+        <ion-icon  name="trash-outline" ></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
