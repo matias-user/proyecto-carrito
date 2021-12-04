@@ -17,9 +17,9 @@ export class FireService {
   registrar( email:string , pass: string ){
     this.auth.createUserWithEmailAndPassword( email, pass );
   }
-
-  crearProducto( producto : Producto ){
-    this.afs.collection('productos').add( producto );
+  async crearProducto( producto : Producto, imagen:string ){
+    const productoFinal = { ...producto, imagen };
+    await this.afs.collection('productos').add( productoFinal );
   }
   traerProductos(){
     return this.afs.collection<Producto>('productos');

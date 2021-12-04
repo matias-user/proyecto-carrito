@@ -27,6 +27,11 @@
         <ion-label position="floating">Descripcion producto</ion-label>
         <ion-textarea formControlName="descripcion" ></ion-textarea>
       </ion-item>
+
+      <ion-item>
+        <ion-label>Imagen</ion-label>
+        <ion-input required type="file" (change)="obtenerImagen( $event )" ></ion-input>
+      </ion-item>
   
       <ion-button expand="block" (click)="crearProducto()" color="success" >Crear</ion-button>
     </form>

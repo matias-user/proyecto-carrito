@@ -18,30 +18,20 @@
 
   <ion-grid>
     <ion-row>
-      <ion-col size="4" >
+      <ion-col *ngFor="let item of arrProductos" size="4" >
         <ion-card>
-          <ion-card-header>hola</ion-card-header>
+          <img [src]="item.imagen" alt="">
+          <ion-card-header>
+            <ion-card-title> {{ item.nombre }} </ion-card-title>
+          </ion-card-header>
           <ion-card-content>
-            <p>Wena wena</p>
+            <p>Precio: {{item.precio}}</p>
+            <p>Stock: {{item.stock}}</p>
+
           </ion-card-content>
         </ion-card>
       </ion-col>
-      <ion-col size="4" >
-        <ion-card>
-          <ion-card-header>hola</ion-card-header>
-          <ion-card-content>
-            <p>Wena wena</p>
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
-      <ion-col size="4" >
-        <ion-card>
-          <ion-card-header>hola</ion-card-header>
-          <ion-card-content>
-            <p>Wena wena</p>
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
+      
     </ion-row>
   </ion-grid>  
 
