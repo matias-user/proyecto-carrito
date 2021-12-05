@@ -6,4 +6,6 @@ export interface Producto{
     sku:string;
     descripciom:string;
     imagen?: any;
+    cantidad?:number;
+    talla?:number;
 }

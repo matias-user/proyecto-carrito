@@ -32,11 +32,11 @@ export class CrearComponent implements OnInit {
 
   ngOnInit() {}
 
-  crearProducto(){
+  async crearProducto(){
     if( this.miFormulario.invalid ){
       return;
     }
-    const task = this.ref.put( this.file );
+     const task =  await this.ref.put( this.file );
     this.fileRef.getDownloadURL().pipe(
       tap( url =>  this.downloadURL = url ),
     ).subscribe( {

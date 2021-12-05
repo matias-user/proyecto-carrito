@@ -6,12 +6,12 @@
 
     <ion-item *ngFor="let producto of arrProductos; let i = index" >
       <ion-avatar slot="end">
-        <img [src]="producto.imagen" alt="">
+        <img [src]="producto.imagen || ''" alt="producto">
       </ion-avatar>
       <ion-label>
-        <p>Cantidad: </p>
+        <p>Cantidad: {{producto.cantidad }}</p>
         <p>Precio: {{producto.precio| number}}</p>
-        <p>Talla</p>
+        <p>Talla: {{ producto.talla }}</p>
         <ion-button color="danger" (click)="quitar( i )" ><ion-icon name="close" ></ion-icon></ion-button>
       </ion-label>
     </ion-item>

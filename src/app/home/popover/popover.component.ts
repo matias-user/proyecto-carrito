@@ -29,7 +29,6 @@ export class PopoverComponent implements OnInit {
   }
   quitar( indice: number ){//Esta es de los items
     this.arrProductos.splice( indice, 1 ); 
-    console.log(this.arrProductos);
     localStorage.setItem( 'productos', JSON.stringify( this.arrProductos ) );
     this.valorTotal();
   }
