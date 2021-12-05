@@ -8,6 +8,8 @@ import { Producto } from './interfaces/producto.interface';
 })
 export class FireService {
 
+  popover = null;
+
   constructor(private auth: AngularFireAuth,
               private afs: AngularFirestore ) { }
 

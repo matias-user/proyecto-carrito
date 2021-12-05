@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { PopoverController } from '@ionic/angular';
 import { tap } from 'rxjs/operators';
 import { FireService } from '../fire.service';
 import { Producto } from '../interfaces/producto.interface';
+import { PopoverComponent } from './popover/popover.component';
 
 @Component({
   selector: 'app-home',
@@ -10,15 +12,35 @@ import { Producto } from '../interfaces/producto.interface';
 })
 export class HomePage implements OnInit {
 
+  carritoCompra = [];
   arrProductos: Producto[];
 
-  constructor( private fireService: FireService) {}
+  constructor( private fireService: FireService,
+          public popoverController: PopoverController) {}
 
   ngOnInit(): void {
     this.fireService.traerProductos().valueChanges().pipe(
       tap( productos => this.arrProductos = productos )
     ).subscribe()
 
-
   }
+  agregarCarrito( producto: Producto ){
+
+    this.carritoCompra.push( producto );
+  }
+  async mostrarCarrito(ev: any){
+    const popoverCurrient = await this.popoverController.create({
+      component: PopoverComponent,
+      translucent: true,
+      event:ev
+      
+    });
+    await popoverCurrient.present();
+    new Promise( res => {
+      
+      res( this.fireService.popover = popoverCurrient )
+    } )
+    
+  }
+
 }

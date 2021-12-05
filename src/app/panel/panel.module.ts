@@ -9,6 +9,7 @@ import { PanelPageRoutingModule } from './panel-routing.module';
 import { PanelPage } from './panel.page';
 import { CrearComponent } from './crear/crear.component';
 import { EliminarComponent } from './eliminar/eliminar.component';
+import { PopoverComponent } from '../home/popover/popover.component';
 
 @NgModule({
   imports: [
@@ -21,7 +22,8 @@ import { EliminarComponent } from './eliminar/eliminar.component';
   declarations: [
     PanelPage,
     CrearComponent,
-    EliminarComponent
+    EliminarComponent,
+    PopoverComponent
   ]
 })
 export class PanelPageModule {}

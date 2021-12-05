@@ -1,0 +1,29 @@
+<ion-content >
+  <ion-list>
+    <ion-list-header>
+      Tu Carrito 
+    </ion-list-header>
+
+    <ion-item>
+      <ion-avatar slot="end">
+        <img src="" alt="">
+      </ion-avatar>
+      <ion-label>
+        <p>Cantidad: </p>
+        <p>Precio: </p>
+        <p>Talla</p>
+      </ion-label>
+    </ion-item>
+
+  </ion-list>
+  <ion-toolbar>
+    <ion-title size="small" >A pagar: <span class="precio" >39.000</span></ion-title>
+    <ion-buttons slot="secondary">
+      <ion-button fill="solid" color="success" >Pagar</ion-button>
+      <ion-button fill="solid" color="primary" (click)="salir()">Salir</ion-button>
+    </ion-buttons>
+    
+  </ion-toolbar>
+  
+
+</ion-content>
