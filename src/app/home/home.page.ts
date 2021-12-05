@@ -12,7 +12,7 @@ import { PopoverComponent } from './popover/popover.component';
 })
 export class HomePage implements OnInit {
 
-  carritoCompra = [];
+  carritoCompra: Producto[] = [];
   arrProductos: Producto[];
 
   constructor( private fireService: FireService,
@@ -22,12 +22,16 @@ export class HomePage implements OnInit {
     this.fireService.traerProductos().valueChanges().pipe(
       tap( productos => this.arrProductos = productos )
     ).subscribe()
-
+    
   }
+  
   agregarCarrito( producto: Producto ){
-
+    this.carritoCompra = JSON.parse( localStorage.getItem('productos') ) || [];
     this.carritoCompra.push( producto );
+    localStorage.setItem('productos', JSON.stringify(this.carritoCompra) );
   }
+
+
   async mostrarCarrito(ev: any){
     const popoverCurrient = await this.popoverController.create({
       component: PopoverComponent,

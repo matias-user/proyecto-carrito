@@ -4,23 +4,24 @@
       Tu Carrito 
     </ion-list-header>
 
-    <ion-item>
+    <ion-item *ngFor="let producto of arrProductos; let i = index" >
       <ion-avatar slot="end">
-        <img src="" alt="">
+        <img [src]="producto.imagen" alt="">
       </ion-avatar>
       <ion-label>
         <p>Cantidad: </p>
-        <p>Precio: </p>
+        <p>Precio: {{producto.precio| number}}</p>
         <p>Talla</p>
+        <ion-button color="danger" (click)="quitar( i )" ><ion-icon name="close" ></ion-icon></ion-button>
       </ion-label>
     </ion-item>
 
   </ion-list>
   <ion-toolbar>
-    <ion-title size="small" >A pagar: <span class="precio" >39.000</span></ion-title>
+    <ion-title size="small" >Total <span class="precio" >{{ valor | number }}</span></ion-title>
     <ion-buttons slot="secondary">
-      <ion-button fill="solid" color="success" >Pagar</ion-button>
-      <ion-button fill="solid" color="primary" (click)="salir()">Salir</ion-button>
+      <ion-button fill="solid" size="small" color="success" >Pagar</ion-button>
+      <ion-button fill="solid" size="small" color="primary" (click)="salir()">Salir</ion-button>
     </ion-buttons>
     
   </ion-toolbar>
