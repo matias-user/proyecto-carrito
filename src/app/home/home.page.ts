@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PopoverController } from '@ionic/angular';
+import { PopoverController, ToastController } from '@ionic/angular';
 import { tap } from 'rxjs/operators';
 import { FireService } from '../fire.service';
 import { Producto } from '../interfaces/producto.interface';
@@ -18,7 +18,8 @@ export class HomePage implements OnInit {
   talla:number = 39;
 
   constructor( private fireService: FireService,
-          public popoverController: PopoverController) {}
+          public popoverController: PopoverController,
+          public toastController: ToastController) {}
 
   ngOnInit(): void {
     this.fireService.traerProductos().valueChanges().pipe(
@@ -34,6 +35,7 @@ export class HomePage implements OnInit {
     this.carritoCompra.push( producto );
     localStorage.setItem('productos', JSON.stringify(this.carritoCompra) );
     
+    this.presentToast();
   }
 
 
@@ -49,7 +51,13 @@ export class HomePage implements OnInit {
       
       res( this.fireService.popover = popoverCurrient )
     } )
-    
   }
-
+  async presentToast() {
+    const toast = await this.toastController.create({
+      message: 'Has agregado el producto al carrito de compra',
+      duration: 1500,
+      color: 'success'
+    });
+    toast.present();
+  }
 }

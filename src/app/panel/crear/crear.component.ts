@@ -40,8 +40,12 @@ export class CrearComponent implements OnInit {
     this.fileRef.getDownloadURL().pipe(
       tap( url =>  this.downloadURL = url ),
     ).subscribe( {
-      complete: () => this.fireService.crearProducto( {...this.miFormulario.value, }, this.downloadURL )
+      complete: () => {
+        this.fireService.crearProducto( {...this.miFormulario.value, }, this.downloadURL );
+        this.miFormulario.reset();
+      } 
     } );
+
     
   }
   obtenerImagen( event ){
@@ -49,6 +53,5 @@ export class CrearComponent implements OnInit {
     const filePath = event.target.files[0].name;
     this.fileRef = this.storage.ref(filePath);
     this.ref = this.storage.ref(filePath);
-    
   }
 }
