@@ -5,8 +5,8 @@
     </ion-title>
     
     <ion-buttons slot="end">
-      <ion-button *ngIf="logueado" routerLink="/panel" >
-        <ion-icon color="primary" name="open" ></ion-icon>
+      <ion-button fill="outline" *ngIf="logueado" routerLink="/panel" >
+        <ion-note>Panel</ion-note>
       </ion-button>
       <ion-button (click)="mostrarCarrito( $event)" >
         <ion-icon name="cart"></ion-icon>
