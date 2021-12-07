@@ -11,7 +11,7 @@ const routes: Routes = [
     component: PanelPage,
     children:[
       { path:'crear', component:CrearComponent },
-      { path:'eliminar', component:EliminarComponent },
+      { path:'modificar', component:EliminarComponent },
       { path:'editar/:id', component:CrearComponent },
       { path: '**', redirectTo:'crear' }
     ]

@@ -23,10 +23,9 @@ export class CrearComponent implements OnInit, OnDestroy {
   })
   editar:boolean = false;
   id: string = '';
-  private file = '';
-  private ref ;
-  private fileRef : AngularFireStorageReference;
-
+  file = '';
+  ref ;
+  fileRef : AngularFireStorageReference;
   downloadURL: string;
 
   constructor( private fb: FormBuilder,
@@ -48,7 +47,7 @@ export class CrearComponent implements OnInit, OnDestroy {
       pluck('id'),
       tap( id => this.id = id ),
       map( id => this.fireService.traerProductoId(id).valueChanges() ),
-      switchMap( resp => resp ),
+      switchMap( resp => resp ),//Se subscribe al observable de traerProductos.
       tap<Producto>( result => {
         const { descripcion, nombre, precio, stock, sku } = result;
         this.miFormulario.get('nombre').setValue(nombre);
@@ -67,7 +66,7 @@ export class CrearComponent implements OnInit, OnDestroy {
       if( this.miFormulario.invalid ){
         return;
       }
-       const task =  await this.ref.put( this.file );
+       const task =  await this.ref.put( this.file );//Aqui se ejecuta el subir la imagen.
       this.fileRef.getDownloadURL().pipe(
         tap( url =>  this.downloadURL = url ),
       ).subscribe( {
