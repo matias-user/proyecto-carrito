@@ -13,11 +13,14 @@ export class FireService {
   constructor(private auth: AngularFireAuth,
               private afs: AngularFirestore ) { }
 
-  login( email:string , pass: string ){
-    this.auth.signInWithEmailAndPassword( email, pass );
+  async login( email:string , pass: string ){
+    await this.auth.signInWithEmailAndPassword( email, pass );
   }
   registrar( email:string , pass: string ){
     this.auth.createUserWithEmailAndPassword( email, pass );
+  }
+  salir(){
+    this.auth.signOut();
   }
   async crearProducto( producto : Producto, imagen:string ){
     const productoFinal = { ...producto, imagen };

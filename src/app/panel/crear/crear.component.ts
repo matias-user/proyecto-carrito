@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FireService } from 'src/app/fire.service';
 import { AngularFireStorage, AngularFireStorageReference } from '@angular/fire/compat/storage';
 import { map, pluck, switchMap, tap } from 'rxjs/operators';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Producto } from 'src/app/interfaces/producto.interface';
 
 @Component({
@@ -11,7 +11,7 @@ import { Producto } from 'src/app/interfaces/producto.interface';
   templateUrl: './crear.component.html',
   styleUrls: ['./crear.component.scss'],
 })
-export class CrearComponent implements OnInit {
+export class CrearComponent implements OnInit, OnDestroy {
 
   miFormulario: FormGroup = this.fb.group({
     nombre: [ '', [Validators.required]],
@@ -32,11 +32,17 @@ export class CrearComponent implements OnInit {
   constructor( private fb: FormBuilder,
                 private fireService: FireService,
                 private storage: AngularFireStorage,
-                private activatedRoute: ActivatedRoute) { }
+                private activatedRoute: ActivatedRoute,
+                private router: Router) { }
   
+  ngOnDestroy(): void {
+    this.editar = false;
+  }
 
   ngOnInit() {
-    if( !this.activatedRoute.params ) return;
+    if( !this.router.url.includes('editar') ){
+      return;
+    }
     
     this.activatedRoute.params.pipe(
       pluck('id'),
@@ -71,10 +77,12 @@ export class CrearComponent implements OnInit {
         } 
       } );
     }else{
-      if( !this.activatedRoute.params ) return;
+      if( !this.router.url.includes('editar') ){
+        return;
+      }
 
       this.fireService.traerProductoId(this.id).update( this.miFormulario.value );
-      this.editar = false;
+      
     }
   }
   obtenerImagen( event ){

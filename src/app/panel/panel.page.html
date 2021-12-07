@@ -14,21 +14,20 @@
         <ion-label>Crear</ion-label>
       </ion-tab-button>
 
-      <ion-tab-button tab="editar">
+      <ion-tab-button tab="eliminar">
         <ion-icon name="create"></ion-icon>
-        <ion-label>Editar</ion-label>
+        <ion-label>Modificaciones</ion-label>
       </ion-tab-button>
     
       <ion-tab-button routerLink="/home">
-        <ion-icon name="home"></ion-icon>
-        <ion-label>Home</ion-label>
+        <ion-icon name="globe"></ion-icon>
+        <ion-label>E-Commerce</ion-label>
       </ion-tab-button>
 
-      <ion-tab-button tab="eliminar">
-        <ion-icon name="close-circle"></ion-icon>
-        <ion-label>Quitar</ion-label>
+      <ion-tab-button (click)="salirSesion()" >
+        <ion-icon name="exit"></ion-icon>
+        <ion-label>Salir</ion-label>
       </ion-tab-button>
-
     </ion-tab-bar>
   </ion-tabs>
   

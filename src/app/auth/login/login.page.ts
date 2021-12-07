@@ -33,11 +33,12 @@ export class LoginPage implements OnInit {
       });
       toast.present();
   }
-    this.miFormulario.reset();
+    
     const { correo, contra } = this.miFormulario.value;
     await this.fireService.login( correo, contra );
     console.log('paso');
     this.router.navigateByUrl('/panel/crear');
+    this.miFormulario.reset();
   }
   irRegistro(){
     

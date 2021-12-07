@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { FireService } from '../fire.service';
 
 @Component({
   selector: 'app-panel',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PanelPage implements OnInit {
 
-  constructor() { }
+  constructor( private fs: FireService,
+              private router: Router) { }
 
   ngOnInit() {
+  }
+  salirSesion(){
+
+    this.fs.salir();
+    this.router.navigateByUrl('/login');
   }
 
 }

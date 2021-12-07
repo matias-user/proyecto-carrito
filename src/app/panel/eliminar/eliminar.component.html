@@ -4,20 +4,31 @@
     <ion-spinner color="secondary" name="lines-small"></ion-spinner>
   </div>
 
-  <ion-list *ngFor="let item of arrProductos " >
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+
+        <ion-list *ngFor="let item of arrProductos " >
     
-    <ion-item color="dark" >
-      <ion-label> {{item.nombre}} </ion-label>
-      <ion-buttons>
-        <ion-button [routerLink]="['/panel/editar',item.id]" color="warning" >
-          <ion-icon  name="construct" ></ion-icon>
-        </ion-button>
-        
-        <ion-button (click)="mostrarAcciones(item.id)" color="danger" >
-          <ion-icon  name="trash" ></ion-icon>
-        </ion-button>
-      </ion-buttons>
-    </ion-item>
-  </ion-list>
-</ion-content>
+          <ion-item color="dark" >
+            <ion-label> {{item.nombre}} </ion-label>
+            <ion-buttons>
+              <ion-button [routerLink]="['/panel/editar',item.id]" color="primary" >
+                <ion-icon  name="construct" ></ion-icon>
+              </ion-button>
+              
+              <ion-button (click)="mostrarAcciones(item.id)" color="danger" >
+                <ion-icon  name="trash" ></ion-icon>
+              </ion-button>
+            </ion-buttons>
+          </ion-item>
+        </ion-list>
+      
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  
+  </ion-content>
 
