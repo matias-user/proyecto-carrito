@@ -26,7 +26,11 @@ export class FireService {
   traerProductos(){
     return this.afs.collection<Producto>('productos');
   }
-  eliminar(id: string){
+  traerProductoId( id: string ){
+    return this.afs.collection('productos').doc(id) ; 
+  }
+  eliminar( id: string ){
     this.afs.collection('productos').doc(id).delete();
   }
+  
 }

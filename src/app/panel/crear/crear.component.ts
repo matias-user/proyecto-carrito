@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FireService } from 'src/app/fire.service';
 import { AngularFireStorage, AngularFireStorageReference } from '@angular/fire/compat/storage';
-import { tap } from 'rxjs/operators';
+import { map, pluck, switchMap, tap } from 'rxjs/operators';
+import { ActivatedRoute } from '@angular/router';
+import { Producto } from 'src/app/interfaces/producto.interface';
 
 @Component({
   selector: 'app-crear',
@@ -17,9 +19,10 @@ export class CrearComponent implements OnInit {
     stock:[ '', [Validators.required]],
     sku:[ '', [Validators.required]],
     descripcion:[ '', [Validators.required]],
-
+    imagen:['',[Validators.required]]
   })
-
+  editar:boolean = false;
+  id: string = '';
   private file = '';
   private ref ;
   private fileRef : AngularFireStorageReference;
@@ -28,25 +31,51 @@ export class CrearComponent implements OnInit {
 
   constructor( private fb: FormBuilder,
                 private fireService: FireService,
-                private storage: AngularFireStorage) { }
+                private storage: AngularFireStorage,
+                private activatedRoute: ActivatedRoute) { }
+  
 
-  ngOnInit() {}
+  ngOnInit() {
+    if( !this.activatedRoute.params ) return;
+    
+    this.activatedRoute.params.pipe(
+      pluck('id'),
+      tap( id => this.id = id ),
+      map( id => this.fireService.traerProductoId(id).valueChanges() ),
+      switchMap( resp => resp ),
+      tap<Producto>( result => {
+        const { descripcion, nombre, precio, stock, sku } = result;
+        this.miFormulario.get('nombre').setValue(nombre);
+        this.miFormulario.get('precio').setValue(precio);
+        this.miFormulario.get('stock').setValue(stock);
+        this.miFormulario.get('sku').setValue(sku);
+        this.miFormulario.get('descripcion').setValue(descripcion);
+        
+      })
+    )
+    .subscribe( result => this.editar = true ); 
+  }
 
   async crearProducto(){
-    if( this.miFormulario.invalid ){
-      return;
-    }
-     const task =  await this.ref.put( this.file );
-    this.fileRef.getDownloadURL().pipe(
-      tap( url =>  this.downloadURL = url ),
-    ).subscribe( {
-      complete: () => {
-        this.fireService.crearProducto( {...this.miFormulario.value, }, this.downloadURL );
-        this.miFormulario.reset();
-      } 
-    } );
+    if( !this.editar ){
+      if( this.miFormulario.invalid ){
+        return;
+      }
+       const task =  await this.ref.put( this.file );
+      this.fileRef.getDownloadURL().pipe(
+        tap( url =>  this.downloadURL = url ),
+      ).subscribe( {
+        complete: () => {
+          this.fireService.crearProducto( {...this.miFormulario.value, }, this.downloadURL );
+          this.miFormulario.reset();
+        } 
+      } );
+    }else{
+      if( !this.activatedRoute.params ) return;
 
-    
+      this.fireService.traerProductoId(this.id).update( this.miFormulario.value );
+      this.editar = false;
+    }
   }
   obtenerImagen( event ){
     this.file = event.target.files[0];

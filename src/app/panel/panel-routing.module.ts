@@ -12,8 +12,8 @@ const routes: Routes = [
     component: PanelPage,
     children:[
       { path:'crear', component:CrearComponent },
-      { path:'editar', component:EditarComponent },
-      { path:'eliminar', component:EliminarComponent }
+      { path:'eliminar', component:EliminarComponent },
+      { path:'editar/:id', component:CrearComponent },
     ]
   },
 ];

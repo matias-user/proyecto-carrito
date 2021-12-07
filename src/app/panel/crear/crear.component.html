@@ -1,6 +1,6 @@
 <ion-content>
   <ion-card color="dark" >
-    <ion-card-subtitle>Añadir nuevo producto</ion-card-subtitle>
+    <ion-card-subtitle>{{ editar ? 'Editar producto': 'Añadir nuevo producto' }}</ion-card-subtitle>
     
     <form [formGroup]="miFormulario">
       <ion-item>
@@ -30,10 +30,10 @@
 
       <ion-item>
         <ion-label>Imagen</ion-label>
-        <ion-input required type="file" (change)="obtenerImagen( $event )" ></ion-input>
+        <ion-input required formControlName="imagen" type="file" (change)="obtenerImagen( $event )" ></ion-input>
       </ion-item>
   
-      <ion-button expand="block" (click)="crearProducto()" color="success" >Crear</ion-button>
+      <ion-button expand="block" (click)="crearProducto()" color="success" >{{ editar ? 'Editar': 'Crear' }}</ion-button>
     </form>
     
   </ion-card>

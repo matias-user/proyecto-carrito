@@ -4,7 +4,7 @@ export interface Producto{
     precio:number;
     stock:number;
     sku:string;
-    descripciom:string;
+    descripcion:string;
     imagen?: any;
     cantidad?:number;
     talla?:number;

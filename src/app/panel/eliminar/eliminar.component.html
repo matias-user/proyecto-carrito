@@ -8,10 +8,15 @@
     
     <ion-item color="dark" >
       <ion-label> {{item.nombre}} </ion-label>
-      <ion-button (click)="mostrarAcciones(item.id)" color="danger" >
-
-        <ion-icon  name="trash-outline" ></ion-icon>
-      </ion-button>
+      <ion-buttons>
+        <ion-button [routerLink]="['/panel/editar',item.id]" color="warning" >
+          <ion-icon  name="construct" ></ion-icon>
+        </ion-button>
+        
+        <ion-button (click)="mostrarAcciones(item.id)" color="danger" >
+          <ion-icon  name="trash" ></ion-icon>
+        </ion-button>
+      </ion-buttons>
     </ion-item>
   </ion-list>
 </ion-content>
