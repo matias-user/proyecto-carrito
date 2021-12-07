@@ -22,6 +22,9 @@ export class FireService {
   salir(){
     this.auth.signOut();
   }
+  estaLogueado(){
+     return  this.auth.authState;
+  }
   async crearProducto( producto : Producto, imagen:string ){
     const productoFinal = { ...producto, imagen };
     await this.afs.collection('productos').add( productoFinal );

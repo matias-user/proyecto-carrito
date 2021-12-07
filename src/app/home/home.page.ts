@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PopoverController, ToastController } from '@ionic/angular';
-import { tap } from 'rxjs/operators';
+import { pluck, tap } from 'rxjs/operators';
 import { FireService } from '../fire.service';
 import { Producto } from '../interfaces/producto.interface';
 import { PopoverComponent } from './popover/popover.component';
@@ -16,15 +16,23 @@ export class HomePage implements OnInit {
   arrProductos: Producto[];
   cantidad:number = 1;
   talla:number = 39;
+  logueado: boolean = false;
 
   constructor( private fireService: FireService,
           public popoverController: PopoverController,
           public toastController: ToastController) {}
 
   ngOnInit(): void {
+
     this.fireService.traerProductos().valueChanges().pipe(
       tap( productos => this.arrProductos = productos ),
     ).subscribe()
+    
+    this.fireService.estaLogueado().pipe(
+      pluck('uid'),
+      tap( uid => uid !== undefined ? this.logueado = true : false )
+    ).subscribe( )
+    
     
   }
   
