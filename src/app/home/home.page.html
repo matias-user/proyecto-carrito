@@ -1,0 +1,83 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      <ion-img src="../../assets/images/3b.png" ></ion-img>
+    </ion-title>
+    
+    <ion-buttons slot="end">
+      <ion-button fill="outline" *ngIf="logueado" routerLink="/panel" >
+        <ion-note>Panel</ion-note>
+      </ion-button>
+      <ion-button (click)="mostrarCarrito( $event)" >
+        <ion-icon name="cart"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <div class="spinner" *ngIf="!arrProductos" >
+    <ion-spinner color="success" name="dots"></ion-spinner>
+  </div>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col *ngFor="let item of arrProductos" size="6" sizeLg="4" >
+        <ion-card>
+          <img [src]="item.imagen" alt="">
+          <ion-card-header>
+            <ion-card-title> {{ item.nombre }} </ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <p>Precio: {{item.precio | number}}</p>
+            <ion-item color="ligth">
+              <ion-label >Cant.</ion-label>
+              <ion-input  type="number" [(ngModel)]="cantidad" min="1"  ></ion-input>
+            </ion-item>
+
+            <ion-item color="ligth" >
+              <ion-label>Talla</ion-label>
+              <ion-select [(ngModel)]="talla" placeholder="Seleccione una">
+                <ion-select-option value="39">39</ion-select-option>
+                <ion-select-option value="40">40</ion-select-option>
+                <ion-select-option value="41">41</ion-select-option>
+                <ion-select-option value="42">42</ion-select-option>
+                <ion-select-option value="43">43</ion-select-option>
+              </ion-select>
+            </ion-item>
+            
+            <ion-button class="text-small"  (click)="agregarCarrito( item )" size="small" 
+              expand="block">Agregar</ion-button>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      
+    </ion-row>
+  </ion-grid>  
+
+  <ion-footer  >
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          
+          <ion-buttons>
+            <ion-label >Nuestras redes sociales</ion-label>
+            <ion-button>
+              <ion-icon name="logo-facebook" ></ion-icon>
+
+            </ion-button>
+            <ion-button>
+
+            <ion-icon name="logo-instagram" ></ion-icon>
+            </ion-button>
+
+          </ion-buttons>
+
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-footer>
+
+</ion-content>

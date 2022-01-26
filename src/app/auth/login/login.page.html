@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="contentLogin" >
+
+  <ion-card  >
+    <ion-card-header>
+      <ion-card-title>Iniciar Sesion</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content class="flex" >
+
+      <form [formGroup]="miFormulario" class="width-30" (ngSubmit)="ingresar()" >
+        <ion-item color="light" >
+          <ion-label position="stacked">Correo</ion-label>
+          <ion-input formControlName="correo" type="email" ></ion-input>
+        </ion-item>   
+  
+        <ion-item color="light" >
+          <ion-label position="stacked">Contraseña</ion-label>
+          <ion-input formControlName="contra" type="password" ></ion-input>
+        </ion-item>       
+        <ion-chip (click)="irRegistro()" >
+          <ion-label>¿Deseas crear una cuenta?</ion-label>
+        </ion-chip>
+        <ion-button type="submit" color="dark" expand="block">Ingresar</ion-button>
+  
+      </form>
+    </ion-card-content>
+
+  </ion-card>
+
+</ion-content>

@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Panel de Control</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-tabs>
+    <ion-tab-bar slot="button" >
+      
+      <ion-tab-button tab="crear">
+        <ion-icon name="add-circle"></ion-icon>
+        <ion-label>Crear</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button tab="modificar">
+        <ion-icon name="create"></ion-icon>
+        <ion-label>Modificaciones</ion-label>
+      </ion-tab-button>
+    
+      <ion-tab-button routerLink="/home">
+        <ion-icon name="globe"></ion-icon>
+        <ion-label>E-Commerce</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button routerLink="/registro">
+        <ion-icon name="person-add-outline"></ion-icon>
+        <ion-label>Crear página</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button (click)="salirSesion()" >
+        <ion-icon name="exit"></ion-icon>
+        <ion-label>Salir</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
+  
+
+</ion-content>

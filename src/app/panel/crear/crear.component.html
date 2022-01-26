@@ -1,0 +1,48 @@
+<ion-content  >
+  <ion-card color="white" class="flex"  >
+    <div class="width-40" >
+
+      <ion-card-subtitle >
+        <h3>
+
+          {{ editar ? 'Editar producto': 'Añadir nuevo producto' }}
+        </h3>
+      </ion-card-subtitle>
+      
+      <form [formGroup]="miFormulario" class="" >
+        <ion-item>
+          <ion-label>Nombre producto</ion-label>
+          <ion-input formControlName="nombre" type="text" ></ion-input>
+        </ion-item>
+    
+        <ion-item>
+          <ion-label>Precio producto</ion-label>
+          <ion-input formControlName="precio" type="number" ></ion-input>
+        </ion-item>
+        
+        <ion-item>
+          <ion-label>Stock producto</ion-label>
+          <ion-input formControlName="stock" type="number" ></ion-input>
+        </ion-item>
+    
+        <ion-item>
+          <ion-label>SKU</ion-label>
+          <ion-input formControlName="sku" type="text" ></ion-input>
+        </ion-item>
+    
+        <ion-item>
+          <ion-label position="floating">Descripcion producto</ion-label>
+          <ion-textarea formControlName="descripcion" ></ion-textarea>
+        </ion-item>
+  
+        <ion-item>
+          <ion-label>Imagen</ion-label>
+          <ion-input required formControlName="imagen" type="file" (change)="obtenerImagen( $event )" ></ion-input>
+        </ion-item>
+    
+        <ion-button expand="block" (click)="crearProducto()" color="success" >{{ editar ? 'Editar': 'Crear' }}</ion-button>
+      </form>
+    </div>
+    
+  </ion-card>
+</ion-content>

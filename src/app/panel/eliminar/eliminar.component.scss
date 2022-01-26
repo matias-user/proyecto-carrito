@@ -1,0 +1,16 @@
+.spinn{
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    align-items: center;
+}
+ion-spinner{
+    transform: scale(3);
+}
+ion-note{
+    font-size: .6rem;
+    margin-right: 7px;
+}
+.fw{
+    font-weight: bold;
+}

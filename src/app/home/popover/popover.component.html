@@ -1,0 +1,30 @@
+<ion-content >
+  <ion-list>
+    <ion-list-header>
+      Tu Carrito 
+    </ion-list-header>
+
+    <ion-item *ngFor="let producto of arrProductos; let i = index" >
+      <ion-avatar slot="end">
+        <img [src]="producto.imagen || ''" alt="producto">
+      </ion-avatar>
+      <ion-label>
+        <p>Cantidad: {{producto.cantidad }}</p>
+        <p>Precio: {{producto.precio| number}}</p>
+        <p>Talla: {{ producto.talla }}</p>
+        <ion-button color="danger" (click)="quitar( i )" ><ion-icon name="close" ></ion-icon></ion-button>
+      </ion-label>
+    </ion-item>
+
+  </ion-list>
+  <ion-toolbar>
+    <ion-title size="small" >Total <span class="precio" >{{ valor | number }}</span></ion-title>
+    <ion-buttons slot="secondary">
+      <ion-button fill="solid" size="small" color="success" >Pagar</ion-button>
+      <ion-button fill="solid" size="small" color="primary" (click)="salir()">Salir</ion-button>
+    </ion-buttons>
+    
+  </ion-toolbar>
+  
+
+</ion-content>

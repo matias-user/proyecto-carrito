@@ -1,0 +1,30 @@
+ion-icon{
+  font-size: 40px;
+}
+.flex{
+  display: flex;
+}
+.spinner{
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+ion-spinner{
+  transform: scale(3);
+}
+ion-label{
+  display: none;
+}
+@media (min-width: 786px) {
+  ion-label{
+    display: block;
+  }
+}
+ion-img{
+  margin: 10px 0;
+  width: 200px;
+}
+ion-footer{
+  border-top: 1px solid #fff;
+}

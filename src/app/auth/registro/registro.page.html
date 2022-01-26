@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Registro</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Registrar Cuenta</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content class="flex" >
+
+      <form [formGroup]="miFormulario" class="width-30" >
+        <ion-item color="light" >
+          <ion-label position="stacked">Correo</ion-label>
+          <ion-input formControlName="correo" type="email"></ion-input>
+        </ion-item>   
+  
+        <ion-item color="light" >
+          <ion-label position="stacked">Contraseña</ion-label>
+          <ion-input formControlName="contra" type="password" ></ion-input>
+        </ion-item>       
+        
+        <ion-button type="submit" (click)="registrar()" color="dark">Crear usuario</ion-button>
+        <ion-button type="button" routerLink="/login" color="medium">Volver</ion-button>
+  
+      </form>
+    </ion-card-content>
+
+  </ion-card>
+
+</ion-content>

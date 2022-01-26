@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "prueba-movil",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}
